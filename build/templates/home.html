@@ -1,5 +1,19 @@
 
-<div class="grid-container">
-  <h1>Welcome to Foundation for Apps!</h1>
-  <p class="lead">This is version <strong>1.2 Eiger</strong>.</p>
-</div>
+<table ng-app="application" ng-controller="LeagueCtrl">
+  <th>Position</th>
+  <th>Team</th>
+  <th>Points</th>
+  <th>Played</th>
+  <th>Wins</th>
+  <th>Draws</th>
+  <th>Losses</th>
+  <tr ng-repeat="t in teams.standing">
+    <td>{{t.position}}</td>
+    <td><a href="#!/fixtures">{{t.teamName}}</a></td>
+    <td>{{t.points}}</td>
+    <td>{{t.playedGames}}</td>
+    <td>{{t.wins}}</td>
+    <td>{{t.draws}}</td>
+    <td>{{t.losses}}</td>
+  </tr>
+</table>
