@@ -13,7 +13,16 @@
   
   app.factory('footballdataAPIservice', function($http) {
     return {
-      getTeams: function(){
+      getTeams: function() {
+        return $http({
+          url:'http://api.football-data.org/v1/soccerseasons/398/teams',
+          headers: { 'X-Auth-Token': '64224dc8a0204084871ab3cd5645070f' },
+          method: 'GET'
+        }).success(function(data){
+          return data;
+        });
+      },
+      getLeague: function(){
         return $http({
           url:'http://www.football-data.org/alpha/soccerseasons/398/leagueTable',
           headers: { 'X-Auth-Token': '64224dc8a0204084871ab3cd5645070f' },
@@ -33,10 +42,16 @@
       }     
     }
   })
-  app.controller('LeagueCtrl', function($scope, footballdataAPIservice){
+  app.controller('TeamCtrl', function($scope, footballdataAPIservice){
     footballdataAPIservice.getTeams().success(function(data){
-      $scope.teams=data;
-      console.log($scope.teams)
+      $scope.team=data;
+      console.log($scope.team)
+    });
+  })
+  app.controller('LeagueCtrl', function($scope, footballdataAPIservice){
+    footballdataAPIservice.getLeague().success(function(data){
+      $scope.league=data;
+      console.log($scope.league)
     });
   })
   app.controller('FixtureCtrl', function($scope, footballdataAPIservice){
