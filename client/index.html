@@ -14,7 +14,7 @@
     <div class="grid-frame vertical">
       <div class="grid-content shrink" style="padding: 0;">
         <ul class="primary condense menu-bar">
-          <li><a href="/"><strong>Footy App</strong></a></li>
+          <li ng-controller="PremierLeagueController"><a href="/"><strong>{{league.caption}}</strong></a></li>
         </ul>
       </div>
       <div ui-view class="grid-content">

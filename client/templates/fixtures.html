@@ -1,10 +1,9 @@
 ---
 name: fixtures
 url: /fixtures
-controller: FixtureCtrl
 ---
 
-<div ng-app="application" ng-controller="FixtureCtrl">
+<div ng-controller="FixtureController">
   <h1>{{t.name}}</h1>
   <ul ng-repeat="t in homeTeam.fixtures">
     <li>{{t.homeTeamName}} v {{t.awayTeamName}}</li>

@@ -1,19 +1,21 @@
 
-<table ng-app="application" ng-controller="LeagueCtrl">
-  <th>Position</th>
+<table ng-controller="LeagueController">
+  <th>Pos</th>
   <th>Team</th>
-  <th>Points</th>
-  <th>Played</th>
-  <th>Wins</th>
-  <th>Draws</th>
-  <th>Losses</th>
-  <tr ng-repeat="t in league.standing">
-    <td>{{t.position}}</td>
-    <td><a href="#!/fixtures">{{t.teamName}}</a></td>
-    <td>{{t.points}}</td>
-    <td>{{t.playedGames}}</td>
-    <td>{{t.wins}}</td>
-    <td>{{t.draws}}</td>
-    <td>{{t.losses}}</td>
+  <th>Pts</th>
+  <th>P</th>
+  <th>W</th>
+  <th>D</th>
+  <th>L</th>
+  <th>Test</th>
+  <tr ng-repeat="team in league.standing">
+    <td>{{team.position}}</td>
+    <td><a href="#!/fixtures">{{team.teamName}}</a></td>
+    <td>{{team.points}}</td>
+    <td>{{team.playedGames}}</td>
+    <td>{{team.wins}}</td>
+    <td>{{team.draws}}</td>
+    <td>{{team.losses}}</td>
+    <td>{{team._links.team.href}}</td>
   </tr>
 </table>

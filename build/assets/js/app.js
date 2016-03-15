@@ -10,9 +10,18 @@
     'foundation.dynamicRouting',
     'foundation.dynamicRouting.animations'
   ])
-  
+
   app.factory('footballdataAPIservice', function($http) {
     return {
+      getSeason: function() {
+        return $http({
+          url:'http://api.football-data.org/v1/soccerseasons/398',
+          headers: { 'X-Auth-Token': '64224dc8a0204084871ab3cd5645070f' },
+          method: 'GET'
+        }).success(function(data){
+          return data;
+        });
+      },
       getTeams: function() {
         return $http({
           url:'http://api.football-data.org/v1/soccerseasons/398/teams',
@@ -38,29 +47,37 @@
           method: 'GET'
         }).success(function(data){
           return data;
-        }) 
-      }     
+        })
+      }
     }
   })
-  app.controller('TeamCtrl', function($scope, footballdataAPIservice){
+  app.controller('PremierLeagueController' , function($scope, footballdataAPIservice){
+    footballdataAPIservice.getSeason().success(function(data){
+      $scope.league=data;
+      console.log($scope.league)
+    });
+  })
+
+  app.controller('TeamController', function($scope, footballdataAPIservice){
     footballdataAPIservice.getTeams().success(function(data){
       $scope.team=data;
       console.log($scope.team)
     });
   })
-  app.controller('LeagueCtrl', function($scope, footballdataAPIservice){
+  app.controller('LeagueController', function($scope, footballdataAPIservice){
     footballdataAPIservice.getLeague().success(function(data){
       $scope.league=data;
       console.log($scope.league)
+      console.log($scope.league.standing)
     });
   })
-  app.controller('FixtureCtrl', function($scope, footballdataAPIservice){
+  app.controller('FixtureController', function($scope, footballdataAPIservice){
     footballdataAPIservice.getFixtures().success(function(data){
       $scope.homeTeam=data;
       console.log($scope.homeTeam)
     });
   })
-    
+
     .config(config)
     .run(run)
   ;
